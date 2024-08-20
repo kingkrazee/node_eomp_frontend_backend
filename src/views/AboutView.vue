@@ -1,14 +1,18 @@
 <template>
   <div class="container-fluid" id="about">
     <div class="about-info container">
-      <img src="https://iili.io/JGNgKPf.png" alt="web-logo">
-      <h2>Welcome To</h2>
-      <h1 class="name">Play Hub</h1>
-      <span id="text">
-       
-      </span>
+      <img src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="web-logo">
+      <h1 class="name">Welcome to <span class="brand">Play Hub</span></h1>
+      <p id="text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </p>
+      <p>
+        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur.
+      </p>
+      <p>
+        Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna.
+      </p>
     </div>
-    <!-- <img src="https://iili.io/JGw1YUQ.jpg" alt="about-bg"> -->
   </div>
 </template>
 
@@ -22,10 +26,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-image: url("https://nasheetajacobs1999.github.io/Node.js-Images/images/PH.png"); */
-  background-image: linear-gradient(to bottom left, #00CAFF, #000000) ;
+  background-image: linear-gradient(to bottom left, #58a4eb,#20152e, #000000) ;
   background-position: center;
-  /* background-size: cover; */
   background-repeat: no-repeat;
 }
 
@@ -35,20 +37,26 @@
 }
 
 img[alt="web-logo"] {
-  height: 200px;
+  height: 120px;
+  border-radius: 1rem;
+  margin-top: 2rem;
 }
-h2{
-  color: rgb(7, 7, 7);
-}
+
 .name {
-  font-family: Anta, sans-serif;
+  font-family: 'TT Octosquares', sans-serif;
   font-size: 60px;
-  font-weight: 900;
-  color: #080808;
+  font-weight: 400;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.brand {
+  color: #0011ff;
 }
 
 p {
   color: white;
   backdrop-filter: blur(10px);
+  margin-bottom: 20px;
 }
 </style>

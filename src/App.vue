@@ -19,6 +19,8 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cosmic+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=TT+Octosquares&display=swap');
 
 #app {
   font-family: "Rubik", Helvetica, Arial, sans-serif;
