@@ -1,23 +1,46 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import About from '../views/About.vue';
-import Products from '../views/Products.vue';
-import ProductDetails from '../views/ProductDetails.vue';
-import Admin from '../views/Admin.vue';
-import Contact from '../views/Contact.vue';
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/about', component: About },
-  { path: '/products', component: Products },
-  { path: '/products/:id', component: ProductDetails },
-  { path: '/admin', component: Admin },
-  { path: '/contact', component: Contact },
-];
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('@/views/HomeView.vue')
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/AboutView')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('@/views/AdminView')
+  },
+  {
+    path: '/products',
+    name: 'products',
+    component: () => import('@/views/ProductsView.vue')
+  },
+  {
+    path: '/product/:id',
+    name: 'product',
+    component: () => import('@/views/ProductView.vue')
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('@/views/ContactView.vue')
+  },
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   component: () => import('@/views/LoginView.vue')
+  // }
+]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
 
-export default router;
+export default router

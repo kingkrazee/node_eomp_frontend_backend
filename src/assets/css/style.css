@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+/* Portfolio Body */
+body {
+  padding-top: 50px;
+}
+  
+  /* Nav bar */
+   .logo {
+    width: 100px;
+    height: 70px;
+    border-radius: 1rem;
+  } 
+  .nav-item {
+    transition: all .5s;
+    &:hover {
+      transform: scale(1.2);
+      text-decoration: underline;
+    }
+  }
