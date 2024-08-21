@@ -1,5 +1,6 @@
 import express from 'express'
 import { getUsers, getUser, insertUser, deleteUser, updateUser, loginUser } from '../controller/userController.js'
+import {checkUser} from '../middleware/authenticate.js'
 
 const router = express.Router()
 router.
@@ -7,7 +8,7 @@ router.
         .get(getUsers)
         .post(insertUser)
 
-router.post('/login',loginUser)
+router.post('/login',checkUser,loginUser)
 
 router.
     route('/:id')

@@ -7,6 +7,10 @@ const getUserDb = async (id)=>{
     let [data] = await pool.query('SELECT * FROM users WHERE userID = ?',[id])
     return data
 }
+const getUserEmailDb = async (email)=>{
+    let [[data]] = await pool.query('SELECT * FROM users WHERE emailAdd = ?',[email])
+    return data
+}
  const insertUserDb = async(firstName,lastName,userAge,gender,userRole,emailAdd,userPass,userProfile)=>{
     await pool.query(`
         INSERT INTO users
@@ -22,4 +26,4 @@ const getUserDb = async (id)=>{
  }
 
 
-export {getUsersDb, getUserDb, insertUserDb, deleteUserDb, updateUserDb}
+export {getUsersDb, getUserDb, insertUserDb, deleteUserDb, updateUserDb, getUserEmailDb}
