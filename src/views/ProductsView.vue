@@ -15,7 +15,7 @@
                         <router-link :to="{ name: 'product', params: { id: product.prodID } }">
                             <button class="btn btn-success">View</button>
                         </router-link>
-                        <button class="btn btn-dark">Cart</button>
+                        <button class="btn btn-dark" @click="addToCart(product)">Add to Cart</button>
                     </div>
                 </template>
             </Card>
@@ -25,17 +25,57 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { useStore } from 'vuex'
 import { computed, onMounted } from 'vue'
 import Spinner from '@/components/Spinner.vue'
 import Card from '@/components/Card.vue'
+
 const store = useStore()
-const products = computed(
-    () => store.state.products
-)
+const products = computed(() => store.state.products)
+
 onMounted(() => {
     store.dispatch('fetchProducts')
 })
+
+function addToCart(product) {
+    store.dispatch('addToCart', product)
+}
 </script>
-<style scoped></style>
+
+<style scoped>
+/* Add some basic styling to make the page look decent */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.display-2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.gap-2 {
+    gap: 20px;
+}
+
+.my-2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button-wrapper {
+    margin-top: 20px;
+}
+
+.btn {
+    margin: 10px;
+}
+</style>

@@ -27,13 +27,13 @@
                 <router-link to="/about" class="nav-link text-white">About</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/resume" class="nav-link text-white">Products</router-link>
+                <router-link to="/products" class="nav-link text-white">Products</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/project" class="nav-link text-white">Contact Us</router-link>
+                <router-link to="/contact" class="nav-link text-white">Contact Us</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/testimonial" class="nav-link text-white">Admin</router-link>
+                <router-link to="/admin" class="nav-link text-white">Admin</router-link>
             </li>
           </ul>
         </div>
@@ -54,7 +54,7 @@ export default {};
 
 }
 .navbar {
-    background-color: #040404;
+    background-color: rgba(4, 4, 4, 0.7);
 }
 
 li {
@@ -74,6 +74,8 @@ button {
 .navbar {
   width: 100%;
   text-align: center;
+  position: fixed;
+  top:0;
 }
 }
 </style>
