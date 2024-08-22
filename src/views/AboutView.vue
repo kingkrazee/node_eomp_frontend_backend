@@ -16,7 +16,7 @@
         <h2 class="text">Meet The Founders</h2>
       <div class="founders">
         <div class="founder aboutText">
-          <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="Founder 1">
+          <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/20240422_100352.jpg" alt="Founder 1">
           <p>John Doe is the CEO and co-founder of Play Hub. He has over 10 years of experience in the gaming industry and is passionate about creating innovative gaming experiences.</p>
         </div>
         <div class="founder aboutText">
@@ -110,8 +110,10 @@ p {
 
 .founder img {
   height: 150px;
+  width: 150px;
   border-radius: 50%;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 
 </style>

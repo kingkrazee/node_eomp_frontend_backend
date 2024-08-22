@@ -45,7 +45,7 @@ function addToCart(product) {
 </script>
 
 <style scoped>
-.container {
+/* .container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
@@ -53,7 +53,7 @@ function addToCart(product) {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .display-2 {
     font-size: 36px;
