@@ -21,6 +21,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cosmic+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=TT+Octosquares&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 
 #app {
   font-family: "Rubik", Helvetica, Arial, sans-serif;

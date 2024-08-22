@@ -4,7 +4,7 @@
       <div class="container-fluid">
              <span class="navbar-brand mb-0"
             ><img
-              src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH.png"
+              src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH (1).png"
               alt="logo" class="logo"
           /></span>
         <button
@@ -24,7 +24,7 @@
                 <router-link to="/" class="nav-link text-white">Home</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/about" class="nav-link text-white">About</router-link>
+                <router-link to="/about" class="nav-link text-white">About Us</router-link>
             </li>
             <li class="nav-item">
                 <router-link to="/products" class="nav-link text-white">Products</router-link>
@@ -53,8 +53,14 @@ export default {};
     z-index: 1;
 
 }
+.logo{
+  width: 100px;
+  height: 100px;
+
+}
 .navbar {
     background-color: rgba(4, 4, 4, 0.7);
+    height: 80px;
 }
 
 li {

@@ -1,39 +1,51 @@
 <template>
-    <div class="container-fluid" id="full-footer">
-        <img src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH.png" alt="FooterLogo" class="FooterLogo">
-        <div class="container links">
-            <router-link to="/" id="link">Home</router-link>
-            <router-link to="/about" id="link">About</router-link>
-            <router-link to="/products" id="link">Products</router-link>
-            <router-link to="/contact" id="link">Contact Us</router-link>
-            <router-link to="/admin" id="link">Admin</router-link>
+   <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>The Industry</h6>
+            <p class="text-justify">At PlayHub, we specialize in offering top-tier PS5 gaming equipment, ensuring that every gamer can fully immerse themselves in the next-generation gaming experience. From the latest consoles to cutting-edge accessories, we provide everything you need to take your gaming setup to the next level. What sets PlayHub apart is our commitment to quality, customer satisfaction, and competitive pricing, making us one of the best destinations for all your PlayStation needs. Gear up with PlayHub and experience gaming like never before!</p>
+          </div>
+          <div class="col-xs-6 col-md-3">
+            <h6>Categories</h6>
+            <ul class="footer-links">
+              <li><a href="http://scanfcode.com/category/c-language/">Headsets</a></li>
+              <li><a href="http://scanfcode.com/category/front-end-development/">Controllers</a></li>
+              <li><a href="http://scanfcode.com/category/back-end-development/">PS5</a></li>
+              <li><a href="http://scanfcode.com/category/java-programming-language/">Accessories</a></li>
+              <li><a href="http://scanfcode.com/category/android/">Cleaning Equipment</a></li>
+              <li><a href="http://scanfcode.com/category/templates/">Gift Cards</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="../views/AboutView.vue">About Us</a></li>
+              <li><a href="../views/ContactView.vue">Contact Us</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="container" id="contact-info">
-            <h5>Contact Us</h5>
-            <div class="socials">
-                <span>
-                    Nasheeta Jacobs
-                </span>
-                <span class="icons">
-                    <a href="https://wa.me/0635856284" target="_blank">
-                        <i class="fa fa-whatsapp"></i>
-                    </a>
-                    <a href="nasheetahjacobs@gmail.com" target="_blank">
-                        <i class="fa-regular fa-envelope"></i>
-                    </a>
-                </span>
-            </div>
-            <div class="socials">
-                <span>
-                    Kayden Hendricks
-                </span>
-                <span class="icons">
-                    <a href="https://wa.me/0719865973" target="_blank"><i class="fa fa-whatsapp"></i></a>
-                    <a href="mailto:@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
-                </span>
-            </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+         <a href="#">Play Hub</a>.
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="bi bi-twitter-x"></i></a></li>
+              <li><a class="github" href="#"><i class="bi bi-github"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+            </ul>
+          </div>
         </div>
-    </div>
+      </div>
+</footer>
+    <!-- <div class="loading-line"></div> -->
 </template>
 
 <script>
@@ -42,73 +54,100 @@ export default {
 }
 </script>
 <style scoped>
-#full-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    background: #020202;
-    min-height: 4rem;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+.site-footer {
+  background-color: #26272b;
+  padding: 20px 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #737373;
 }
 
-#link {
-    text-decoration: none;
-    color: #B7B5B3;
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
 }
 
-.links {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 400px !important;
-    padding: 0;
-    margin: 0;
-    font-size: small;
-    color: white;
+.site-footer h6 {
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px;
 }
 
-.links a {
-  margin-right: 20px;
+.site-footer a {
+  color: #737373;
 }
 
-.icons{
-    display: flex;
-    gap: 3px;
-}
-.router-link-exact-active {
-    text-decoration: underline !important;
-    color: rgb(48, 116, 116) !important;
+.site-footer a:hover {
+  color: #3366cc;
+  text-decoration: none;
 }
 
-img[alt="FooterLogo"] {
-    height: 100px;
+.footer-links {
+  padding-left: 0;
+  list-style: none;
 }
 
-#contact-info {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: 0;
+.footer-links li {
+  display: block;
 }
-.socials{
-    display: flex;
-    gap: 5px;
-    justify-content: center;
+
+.footer-links a {
+  color: #737373;
 }
-.FooterLogo {
-    width: 100px;
-    height: 70px;
-    border-radius: 1rem;
-  } 
-  #link {
-    transition: all .5s;
-    &:hover {
-      transform: scale(1.2);
-      text-decoration: underline;
-    }
+
+.footer-links a:active, .footer-links a:focus, .footer-links a:hover {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+.social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.social-icons a {
+  background-color: #eceeef;
+  color: #818a91;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+  transition: all 0.2s linear;
+}
+
+.social-icons a:active, .social-icons a:focus, .social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe;
+}
+
+.copyright-text {
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .site-footer [class^=col-] {
+    margin-bottom: 20px;
   }
+}
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding-bottom: 0;
+  }
+  .site-footer .copyright-text, .site-footer .social-icons {
+    text-align: center;
+  }
+}
 </style>

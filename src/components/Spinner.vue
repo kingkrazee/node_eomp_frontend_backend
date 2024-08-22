@@ -54,7 +54,7 @@ export default {
   background: transparent;
   transform-origin: top left;
   animation: radar81 2s linear infinite;
-  border-top: 1px dashed #fff;
+  border-top: 1px dashed #b77abc;
 }
 
 .loader span::before {
@@ -64,10 +64,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: seagreen;
+  background: rgb(139, 46, 125);
   transform-origin: top left;
   transform: rotate(-55deg);
-  filter: blur(30px) drop-shadow(20px 20px 20px seagreen);
+  filter: blur(30px) drop-shadow(20px 20px 20px rgb(174, 55, 182));
 }
 
 @keyframes radar81 {

@@ -3,8 +3,9 @@
         <div class="row">
             <h2 class="display-2">Products</h2>
         </div>
+        {{}}
         <div class="row gap-2 justify-content-center my-2" v-if="products">
-            <Card v-for="product in products" :key="product.prodID">
+            <Card v-for="product in products" v-bind:key="product.prodID">
                 <template #cardHeader>
                     <img :src="product.prodUrl" loading="lazy" class="img-fluid" style="height: 200px;" :alt="product.prodName">
                 </template>
@@ -31,21 +32,19 @@ import { useStore } from 'vuex'
 import { computed, onMounted } from 'vue'
 import Spinner from '@/components/Spinner.vue'
 import Card from '@/components/Card.vue'
-
 const store = useStore()
 const products = computed(() => store.state.products)
-
 onMounted(() => {
     store.dispatch('fetchProducts')
 })
-
 function addToCart(product) {
     store.dispatch('addToCart', product)
 }
+
+
 </script>
 
 <style scoped>
-/* Add some basic styling to make the page look decent */
 .container {
     max-width: 1200px;
     margin: 40px auto;

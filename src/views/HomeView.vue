@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid home">
     <div class="col">
-      <h1 class="homeHeader">PLAY HUB</h1>
+        <h1 class="homeHeader">PLAY HUB</h1>
       <p class="slogan">Gear up, Game on.</p>
       <button class="btn" @click="$router.push('/products')">Shop Now<img src="https://nasheetajacobs1999.github.io/Node.js-Images/images/RightArrowHomeBtn.jpg" alt="Arrow Right" class="arrow-icon"></button>
     </div>
@@ -28,12 +28,20 @@
   font-family: 'TT Octosquares', sans-serif;
   font-size: 5rem;
   color: whitesmoke;
+  font-family: "Jersey 10", sans-serif;
 }
 .homeHeader {
-  font-family: 'Cosmic Sans', cursive;
   font-size: 7rem;
   font-weight: bolder;
-  color: whitesmoke;
+  color: rgb(207, 70, 200);
+  font-family: "Jersey 10", sans-serif;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-left: 3rem;
+  animation: motion 3s ease-in-out infinite;
 }
 .col{
   display: flex;
@@ -61,15 +69,24 @@
   color: #fff;
 }
 
-.homeHeader, .slogan {
+.slogan {
 overflow: hidden;
 white-space: nowrap;
 width: 0;
 animation: typing 3s steps(40, end) forwards;
 }
+/* animations */
 @keyframes typing {
   from { width: 0}
   to { width: 100%}
+}
+@keyframes motion {
+  0%, 100% {
+    transform: perspective(500px) translateZ(0);
+  }
+  50% {
+    transform: perspective(500px) translateZ(50px);
+  }
 }
 /* gradient colour change */
 

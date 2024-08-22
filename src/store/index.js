@@ -1,281 +1,285 @@
-import { createStore } from "vuex";
-import axios from "axios";
-import sweet from "sweetalert";
-import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies();
-import router from "@/router";
+import { createStore } from 'vuex'
+import axios from 'axios'
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+import router from '@/router'
+import { applyToken } from '@/service/AuthenticatedUser.js'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
 
+
+const apiURL = 'https://node-eomp-q11a.onrender.com/'
+
+
+// Apply token from cookies if available
+applyToken(cookies.get('LegitUser')?.token)
 export default createStore({
   state: {
     users: null,
     user: null,
     products: null,
-    product: "",
+    recentProducts: null,
+    product: null
   },
-  getters: {},
+  getters: {
+  },
   mutations: {
     setUsers(state, value) {
-      state.users = value;
+      state.users = value
     },
     setUser(state, value) {
-      state.user = value;
+      state.user = value
     },
     setProducts(state, value) {
-      state.products = value;
+      state.products = value
+    },
+    setRecentProducts(state, value) {
+      state.recentProducts = value
     },
     setProduct(state, value) {
-      state.product = value;
+      state.product = value
     },
   },
   actions: {
-    async register(context, payload) {
-      try {
-        let msg = (await axios.post(`${dbURL}users/`, payload)).data;
-        if (msg) {
-          context.dispatch("fetchUsers");
-          sweet({
-            title: "Sign Up",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          location.reload()
-          // router.push({ name: "login" });
-        }
-      } catch (e) {
-        sweet({
-          title: "Error",
-          text: "Please try again at a different time",
-          icon: "error",
-          timer: 4000,
-        });
-      }
-    },
+    // ==== User ========
     async fetchUsers(context) {
       try {
-        let results = (await axios.get(`${dbURL}users`)).data;
+        const { results, msg } = await (await axios.get(`${apiURL}user`)).data
         if (results) {
-          context.commit("setUsers", results);
-        }
-      } catch (e) {
-        sweet({
-          title: "Error",
-          text: "An error occured while retrieving Users",
-          icon: "error",
-          timer: 2000,
-        });
-      }
-    },
-    async fetchUser(context, payload) {
-      try {
-        let result = (await axios.get(`${dbURL}users/${payload.id}`)).data;
-        if (result) {
-          context.commit("setUser", result);
+          context.commit('setUsers', results)
         } else {
-          sweet({
-            title: "Retrieving a single user",
-            text: "User not found",
-            icon: "info",
-            timer: 4000,
-          });
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "this user was not found.",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
+    async fetchUser(context, id) {
+      try {
+        const { result, msg } = await (await axios.get(`${apiURL}user/${id}`)).data
+        if (result) {
+          context.commit('setUser', result)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async register(context, payload) {
+      try {
+        const { msg, err, token } = await (await axios.post(`${apiURL}user/register`, payload)).data
+        if (token) {
+          context.dispatch('fetchUsers')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+          router.push({ name: 'login' })
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+
     async updateUser(context, payload) {
       try {
-        let msg = await axios.patch(`${dbURL}users/${payload.userID}`, payload);
+        const { msg, err } = await (await axios.patch(`${apiURL}user/${payload.userID}`, payload)).data
         if (msg) {
-          context.dispatch("fetchUsers");
-          sweet({
-            title: "Updated this user",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          location.reload()
+          context.dispatch('fetchUsers')
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "An error occurred while updating this user.",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async deleteUser(context, payload) {
+
+    async deleteUser(context, id) {
       try {
-        let msg = await axios.delete(`${dbURL}users/${payload}`);
+        const { msg, err } = await (await axios.delete(`${apiURL}user/${id}`)).data
         if (msg) {
-          context.dispatch("fetchUsers");
-          sweet({
-            title: "Deleted user",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          location.reload()
+          context.dispatch('fetchUsers')
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "An error occurred while trying to delete this user.",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
+
+    // ===== LOGIN =======
     async login(context, payload) {
       try {
-        const { msg, token, result } = (
-          await axios.post(`${dbURL}users/login`, payload)
-        ).data;
+        const { msg, result, token } = await (await axios.post(`${apiURL}user/login`, payload)).data
         if (result) {
-          context.commit("setUser", { msg, result });
-          cookies.set("VerifiedUser", {
+          toast.success(`${msg}:sunglasses:`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+          context.commit('setUser', {
             msg,
-            token,
-            result,
-          });
-          AuthenticateUser.applyToken(token);
-          sweet({
-            title: msg,
-            text: `Welcome, 
-          ${result?.firstName} ${result?.lastName}`,
-            icon: "success",
-            timer: 2000,
-          });
-          router.push({ name: "home" });
+            result
+          })
+          cookies.set('LegitUser', { token, msg, result })
+          applyToken(token)
+          router.push({ name: 'products' })
         } else {
-          sweet({
-            title: "inf0",
-            text: msg,
-            icon: "info",
-            timer: 4000,
-          });
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "Failed to login.",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
+
+    // ==== Product =====
     async fetchProducts(context) {
       try {
-        let results  = (await axios.get(`${dbURL}products`)).data;
-        if (results) {
-          context.commit("setProducts", results);
-        }
-      } catch (e) {
-        sweet({
-          title: "Error",
-          text: "An error occured while trying to retrieve Products",
-          icon: "error",
-          timer: 4000,
-        });
-      }
-    },
-    async fetchProduct(context, payload) {
-      try {
-        let result = (await axios.get(`${dbURL}products/${payload.id}`))
-          .data;
-        if (result) {
-          context.commit("setProduct", result);
+        const  {data}  = await axios.get(`${apiURL}products/`)
+        console.log(data);
+        if (data) {
+          context.commit('setProducts', data)
         } else {
-          sweet.alert({
-            title: "Retrieve a single product",
-            text: "This product was not found",
-            icon: "info",
-            timer: 4000,
-          });
+          // Removed router.push to allow access to products without login
+          toast.error(`No products found`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "this product was not found.",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async addProduct(context, payload) {
+
+    async recentProducts(context) {
       try {
-        let msg = (await axios.post(`${dbURL}products/`, payload)).data;
-        if (msg) {
-          context.dispatch("fetchProducts");
-          sweet({
-            title: "Add Product",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          location.reload()
-          
+        const { results, msg } = await (await axios.get(`${apiURL}product/recent`)).data
+        if (results) {
+          context.commit('setRecentProducts', results)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "Please try again at a different time",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async editProduct(context, payload) {
+    async fetchProduct(context, id) {
       try {
-        let prodID = payload.prodID;
-        let msg = await axios.patch(`${dbURL}products/${prodID}`, payload);
-        if (msg) {
-          context.dispatch("fetchProducts");
-          sweet({
-            title: "Edit Product",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          location.reload() 
+        const { result, msg } = await (await axios.get(`${apiURL}product/${id}`)).data
+        if (result) {
+          context.commit('setProduct', result)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "Please try again at a different time",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async deleteProduct(context, payload) {
+    async addAProduct(context, payload) {
       try {
-        let msg = await axios.delete(`${dbURL}products/${payload}`);
+        const { msg } = await (await axios.post(`${apiURL}product/add`, payload)).data
         if (msg) {
-          context.dispatch("fetchProducts");
-          sweet({
-            title: "Delete Product",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          location.reload() 
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: "Could not delete this item",
-          icon: "error",
-          timer: 4000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
+    async updateProduct(context, payload) {
+      try {
+        const { msg } = await (await axios.patch(`${apiURL}product/${payload.prodID}`, payload)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async deleteProduct(context, id) {
+      try {
+        const { msg } = await (await axios.delete(`${apiURL}product/${id}`)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    }
   },
-  modules: {},
-});
+  modules: {
+  }
+})

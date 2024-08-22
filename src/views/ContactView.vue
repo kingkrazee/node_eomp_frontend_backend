@@ -62,7 +62,7 @@
 
     </div>
 
-    <div class="contDetails justify-content-around text-center">
+    <!-- <div class="contDetails justify-content-around text-center">
       <a href="mailto:nasheetahjacobs@gmail.com" class="mail-link">
         <i class="fa-solid fa-envelope"></i>
         nasheetahjacobs@gmail.com
@@ -71,7 +71,7 @@
         <i class="fa-solid fa-phone"></i>
         +27 63 585 6284
       </a>
-    </div>
+    </div> -->
     </div>
       
   </section>
@@ -93,6 +93,7 @@ export default {
   background-size: cover;
   position: relative;
   margin-top: -4rem;
+  height: auto;
 }
 .cont-1{
   margin-top: 5rem;
@@ -101,29 +102,32 @@ export default {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: aliceblue;
+  font-family: "Jersey 10", sans-serif;
 }
 /* Form Styles */
 .form {
   display: flex;
   flex-direction: column;
   align-self: center;
-  font-family: "Press Start 2P", cursive; /* Gaming-inspired font */
+  font-family: "Jersey 10", sans-serif;
   gap: 10px;
   padding-inline: 2em;
   padding-bottom: 0.4em;
-  background-color: #1b1b1b; /* Darker background for a gaming vibe */
+  background-color: #1b1b1b; 
   border-radius: 20px;
-  box-shadow: 0px 0px 15px 5px rgba(0, 255, 255, 0.1); /* Neon glow */
+  box-shadow: 0px 0px 15px 5px  rgba(179, 0, 255, 0.1); 
   width: 500px;
+  margin-bottom: 2rem;
 }
 
 .form-heading {
   text-align: center;
   margin: 2em;
-  color: #00ffcc; /* Neon green-blue text */
+  color: #714191; 
   font-size: 1.5em;
   background-color: transparent;
   align-self: center;
+  font-family: "Jersey 10", sans-serif;
 }
 
 .form-field {
@@ -135,8 +139,8 @@ export default {
   padding: 0.6em;
   border: none;
   outline: none;
-  background-color: #333; /* Darker input fields */
-  box-shadow: inset 2px 5px 10px rgba(0, 255, 255, 0.3); /* Subtle inner glow */
+  background-color: #333; 
+  box-shadow: inset 2px 5px 10px rgba(108, 18, 129, 0.3); 
 }
 
 .input-field {
@@ -144,7 +148,7 @@ export default {
   border: none;
   outline: none;
   width: 100%;
-  color: #00ffcc; /* Neon text */
+  color: #00ffcc; 
   padding-inline: 1em;
   font-family: "Press Start 2P", cursive;
 }
@@ -155,7 +159,7 @@ export default {
   padding: 1em;
   border-radius: 10px;
   border: none;
-  background-color: #00ffcc; /* Neon button */
+  background-color: #714191; 
   color: #1b1b1b;
   font-weight: bold;
   transition: all ease-in-out 0.3s;
@@ -163,8 +167,8 @@ export default {
 
 .message-btn:hover {
   background-color: #1b1b1b;
-  color: #00ffcc;
-  box-shadow: 0px 0px 15px 5px rgba(0, 255, 255, 0.5); /* Glow on hover */
+  color: #8f336d;
+  box-shadow: 0px 0px 15px 5px rgba(255, 0, 234, 0.5); /* Glow on hover */
 }
 
 .form-card1 {
@@ -176,7 +180,7 @@ export default {
 }
 
 .form-card1:hover {
-  box-shadow: 0px 0px 30px 1px rgba(0, 255, 255, 0.3); /* Larger neon glow */
+  box-shadow: 0px 0px 30px 1px rgba(255, 0, 212, 0.3); /* Larger neon glow */
 }
 
 .form-card2 {
@@ -195,7 +199,7 @@ export default {
 .contDetails {
   padding: 20px;
   color: #00ffcc; /* Neon color for text */
-  font-family: "Press Start 2P", cursive;
+  font-family: "Jersey 10", sans-serif;
 }
 
 .mail-link, .phone-link {

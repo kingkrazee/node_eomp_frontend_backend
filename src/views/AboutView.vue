@@ -16,11 +16,11 @@
         <h2 class="text">Meet The Founders</h2>
       <div class="founders">
         <div class="founder aboutText">
-          <img src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="Founder 1">
+          <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="Founder 1">
           <p>John Doe is the CEO and co-founder of Play Hub. He has over 10 years of experience in the gaming industry and is passionate about creating innovative gaming experiences.</p>
         </div>
         <div class="founder aboutText">
-          <img src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="Founder 2">
+          <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="Founder 2">
           <p>Jane Smith is the CTO and co-founder of Play Hub. She is a seasoned developer with a background in computer science and has developed several successful games.</p>
         </div>
       </div>
@@ -61,21 +61,32 @@ img[alt="web-logo"] {
   border-radius: 1rem;
   margin-top: 2rem;
 }
+.makers {
+  transition: filter 0.3s ease-in-out, transform 0.5s ease-in-out;
+  filter: grayscale(100%);
+}
 
+.makers:hover {
+  filter: grayscale(0);
+  transform: scale(1.1) translateZ(10px);
+}
 .name {
   font-family: 'TT Octosquares', sans-serif;
   font-size: 60px;
   font-weight: 400;
   color: #ffffff;
   margin-top: 1rem;
+  font-family: "Jersey 10", sans-serif;
 }
 
 .text {
   color: whitesmoke;
+  font-family: "Jersey 10", sans-serif;
 }
 
 .brand {
   color: #0011ff;
+  font-family: "Jersey 10", sans-serif;
 }
 
 p {

@@ -1,11 +1,11 @@
 <template>
         <div class="card">
             <div class="photo">
-                <slot name="prod-img"></slot>
+                <slot name="cardHeader"></slot>
             </div>
             <div class="content">
                 <div class="title">
-                    <slot name="prod-title"></slot>
+                    <slot name="cardBody"></slot>
                 </div>
                 <div class="bg-title" >
                     <slot name="prod-title"></slot>
