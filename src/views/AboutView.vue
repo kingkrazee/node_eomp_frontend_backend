@@ -17,11 +17,11 @@
       <div class="founders">
         <div class="founder aboutText">
           <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/20240422_100352.jpg" alt="Founder 1">
-          <p>John Doe is the CEO and co-founder of Play Hub. He has over 10 years of experience in the gaming industry and is passionate about creating innovative gaming experiences.</p>
+          <p>Nasheeta Jacobs is the co-founder of Play Hub, a dynamic business dedicated to providing top-notch PlayStation products. With a passion for gaming and a keen business acumen, Nasheeta has played a pivotal role in shaping the company's vision and growth since its inception in 2024. Her commitment to delivering exceptional products and services, combined with her innovative approach, has been instrumental in establishing Play Hub as a go-to destination for gaming enthusiasts.</p>
         </div>
         <div class="founder aboutText">
-          <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/PH-Slogan.png" alt="Founder 2">
-          <p>Jane Smith is the CTO and co-founder of Play Hub. She is a seasoned developer with a background in computer science and has developed several successful games.</p>
+          <img class="makers" src="https://nasheetajacobs1999.github.io/Node.js-Images/images/node_eomp_prof.jpg" alt="Founder 2">
+          <p>Kayden Hendricks, co-founder of Play Hub, brings a wealth of expertise and enthusiasm to the company's mission of delivering premier PlayStation products. Since Play Hub's founding in 2024, Kayden has been a driving force behind the brand's success, leveraging his deep knowledge of the gaming industry and a strong entrepreneurial spirit. His dedication to enhancing the gaming experience and his strategic vision have been crucial in establishing Play Hub as a leader in the market, ensuring that the company consistently meets the needs of avid gamers.</p>
         </div>
       </div>
     </div>
@@ -71,7 +71,6 @@ img[alt="web-logo"] {
   transform: scale(1.1) translateZ(10px);
 }
 .name {
-  font-family: 'TT Octosquares', sans-serif;
   font-size: 60px;
   font-weight: 400;
   color: #ffffff;
@@ -82,6 +81,7 @@ img[alt="web-logo"] {
 .text {
   color: whitesmoke;
   font-family: "Jersey 10", sans-serif;
+  padding-top: 2rem;
 }
 
 .brand {
@@ -106,6 +106,7 @@ p {
   text-align: center;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .founder img {

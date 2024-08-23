@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" id="product">
         <div class="row">
             <h2 class="display-2">Products</h2>
         </div>
@@ -55,6 +55,10 @@ function addToCart(product) {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 } */
 
+#product {
+    background-color: linear-gradient(to bottom left, #280677,#271341, #000000);
+}
+
 .display-2 {
     font-size: 36px;
     font-weight: bold;
@@ -76,5 +80,8 @@ function addToCart(product) {
 
 .btn {
     margin: 10px;
+}
+.mg-fluid{
+    z-index: -6;
 }
 </style>

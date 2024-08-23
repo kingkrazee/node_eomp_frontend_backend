@@ -1,34 +1,39 @@
 <template>
-    <div class="container-fluid" id="single-view">
-        <div class=" sing-img">
-            <img :src="product.prodUrl" alt="prod-png" id="prod-png" loading="lazy">
-        </div>
-        <div class="prod-bio">
-            <img :src="product.prodBio" alt="product-bio" id="prod-bg" loading="lazy">
-            <div class="container prod-details">
-                <h2>ABOUT</h2>
-                <p>name: {{ product.prodName }}</p>
-                <p>Price: R{{ product.amount }}</p>
-                <p class="desc">About: {{ product.prodDes }}</p>
-                <button class="cart">
-                    add to cart
-                </button>
-            </div>
-        </div>
+    <div class="singleProd">
+        <!-- <header>
+            <h1>Product Details</h1>
+        </header> -->
+        <Card v-for="product in productSingle" v-bind:key="product.prodID" class="singleProd2" >
+        <template #cardHeader>
+            <img :src="product.prodUrl" loading="notLazy" class="img2" style="height: 200px;" :alt="product.prodName">
+        </template>
+        <template #cardBody>
+            <h5 class="card-title fw-bold">{{ product.prodName }}</h5>
+                    <p class="lead"><span class="text-success fw-bold">Amount</span>: R{{ product.amount }}</p>
+                    <div class="button-wrapper d-md-flex d-block justify-content-between">
+                        <button class="btn btn-dark" @click="addToCart(product)">Add to Cart</button>
+                    </div>    
+        </template>
+    </Card>
     </div>
+    
 </template>
-<script>
 
+<script>
+import Card from '@/components/Card.vue';
+
+Card
 export default {
     components: {
+        Card
     },
     computed: {
-        product() {
+        productSingle() {
             return this.$store.state.product;
         }
     },
     mounted() {
-        this.$store.dispatch('fetchProduct', this.$route.params)
+        this.$store.dispatch('fetchProduct', this.$route.params.id)
     }
 }
 </script>
@@ -41,7 +46,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Rubik", sans-serif;
+    font-family: "Jersey 10", sans-serif;
 }
 
 .sing-img {
@@ -50,7 +55,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("https://iili.io/JGw170x.jpg");
     margin: 0;
     padding: 0;
 }
@@ -93,8 +97,9 @@ export default {
 
 h2{
     text-decoration: underline;
-    color: #841818;
+    color: #c336b9;
     font-size: 4rem;
+    font-family: "Jersey 10", sans-serif;
 }
 .cart{
     background: #010309;
@@ -106,6 +111,12 @@ h2{
     font-size: 10px;
     border-radius: 5px;
     color: #42b983;
+}
+.singleProd{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width:850px) {

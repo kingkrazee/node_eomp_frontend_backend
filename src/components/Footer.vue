@@ -9,21 +9,21 @@
           <div class="col-xs-6 col-md-3">
             <h6>Categories</h6>
             <ul class="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">Headsets</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">Controllers</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">PS5</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Accessories</a></li>
-              <li><a href="http://scanfcode.com/category/android/">Cleaning Equipment</a></li>
-              <li><a href="http://scanfcode.com/category/templates/">Gift Cards</a></li>
+              <li><a href="#">Headsets</a></li>
+              <li><a href="#">Controllers</a></li>
+              <li><a href="#">PS5</a></li>
+              <li><a href="#">Accessories</a></li>
+              <li><a href="#">Cleaning Equipment</a></li>
+              <li><a href="#">Gift Cards</a></li>
             </ul>
           </div>
           <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
-            <ul class="footer-links">
-              <li><a href="../views/AboutView.vue">About Us</a></li>
-              <li><a href="../views/ContactView.vue">Contact Us</a></li>
-            </ul>
-          </div>
+    <h6>Quick Links</h6>
+    <ul class="footer-links">
+      <li><router-link to="/about">About Us</router-link></li>
+      <li><router-link to="/contact">Contact Us</router-link></li>
+    </ul>
+  </div>
         </div>
         <hr>
       </div>

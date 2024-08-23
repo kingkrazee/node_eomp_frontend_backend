@@ -3,7 +3,7 @@ import axios from 'axios'
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
 import router from '@/router'
-import { applyToken } from '@/service/AuthenticatedUser.js'
+import { applyToken } from '../../service/AuthenticatedUser.js'
 import { useCookies } from 'vue3-cookies'
 const { cookies } = useCookies()
 
@@ -38,6 +38,9 @@ export default createStore({
     },
     setProduct(state, value) {
       state.product = value
+    },
+    setDeleteP(state, data){
+      state.products = data
     },
   },
   actions: {
@@ -173,7 +176,7 @@ export default createStore({
     // ==== Product =====
     async fetchProducts(context) {
       try {
-        const  {data}  = await axios.get(`${apiURL}products/`)
+        const  {data}  = await axios.get(`${apiURL}products`)
         console.log(data);
         if (data) {
           context.commit('setProducts', data)
@@ -211,8 +214,11 @@ export default createStore({
       }
     },
     async fetchProduct(context, id) {
+      console.log(id);
+      
       try {
-        const { result, msg } = await (await axios.get(`${apiURL}product/${id}`)).data
+        console.log(id)
+        const  result  = await (await axios.get(`${apiURL}products/${id}`)).data
         if (result) {
           context.commit('setProduct', result)
         } else {
@@ -246,8 +252,10 @@ export default createStore({
       }
     },
     async updateProduct(context, payload) {
+      console.log(payload)
       try {
-        const { msg } = await (await axios.patch(`${apiURL}product/${payload.prodID}`, payload)).data
+        const  msg  = await (await axios.patch(`${apiURL}products/${payload.prodID}`, payload)).data
+        console.log(msg)
         if (msg) {
           context.dispatch('fetchProducts')
           toast.success(`${msg}`, {
@@ -262,23 +270,34 @@ export default createStore({
         })
       }
     },
-    async deleteProduct(context, id) {
+    // async deleteProduct(context, id) {
+    //   try {
+    //     const { msg } = await (await axios.delete(`${apiURL}product/${id}`)).data
+    //     if (msg) {
+    //       context.dispatch('fetchProducts')
+    //       toast.success(`${msg}`, {
+    //         autoClose: 2000,
+    //         position: toast.POSITION.BOTTOM_CENTER
+    //       })
+    //     }
+    //   } catch (e) {
+    //     toast.error(`${e.message}`, {
+    //       autoClose: 2000,
+    //       position: toast.POSITION.BOTTOM_CENTER
+    //     })
+    //   }
+    // }
+    async deleteProduct(context, prodID){
       try {
-        const { msg } = await (await axios.delete(`${apiURL}product/${id}`)).data
-        if (msg) {
-          context.dispatch('fetchProducts')
-          toast.success(`${msg}`, {
-            autoClose: 2000,
-            position: toast.POSITION.BOTTOM_CENTER
-          })
-        }
-      } catch (e) {
-        toast.error(`${e.message}`, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER
-        })
+        const {data} = await axios.delete(`${apiURL}products/${prodID}`)
+        // console.log(response.data)
+        console.log(data)
+        // context.commit('setDeleteP', response)
+        location.reload()
+      } catch (error) {
+        console.log(error);
       }
-    }
+    },
   },
   modules: {
   }

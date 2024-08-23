@@ -1,6 +1,7 @@
 <template>
         <div class="card">
-            <div class="photo">
+            <div class="allCont">
+                <div class="photo">
                 <slot name="cardHeader"></slot>
             </div>
             <div class="content">
@@ -14,6 +15,8 @@
                     <slot name="Desc"></slot>
                 </div>
             </div>
+            </div>
+            
         </div>
 
 </template>
@@ -145,5 +148,8 @@ export default {
   background: rgb(253, 253, 253);
   transition-delay: 0;
   transition: 0.05s;
+}
+.allCont{
+    margin-left: -1rem;
 }
 </style>
