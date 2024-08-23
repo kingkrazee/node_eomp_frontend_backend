@@ -8,11 +8,11 @@ const getProduct = async(req,res)=>{
 const insertProduct = async(req,res)=>{
     let {prodName,quantity,amount,category,prodUrl} =req.body
     await insertProductDb(prodName,quantity,amount,category,prodUrl)
-    res.send('Products added successfully')
+    res.status(200).send('Products added successfully')
 }
 const deleteProduct = async(req,res)=>{
     await deleteProductDb(req.params.id)
-    res.send('Product has been deleted')
+    res.status(200).send('Product has been deleted')
 }
 const updateProduct = async(req,res)=>{
     let {prodName,quantity,amount,category,prodUrl} =req.body
@@ -23,6 +23,6 @@ const updateProduct = async(req,res)=>{
     category ? category: { category } = products
     prodUrl ? prodUrl: { prodUrl } = products
     await updateProductDb(prodName,quantity,amount,category,prodUrl, +req.params.id)
-    res.send('Product updated successfully')
+    res.status(200).send('Product updated successfully')
 }
 export {getProducts, getProduct, insertProduct, deleteProduct, updateProduct}

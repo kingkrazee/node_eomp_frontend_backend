@@ -19,7 +19,7 @@ const checkUser = async(req,res,next)=>{
             console.log(token);
             next()
         }else{
-            res.send('Password incorrect')
+            res.status(400).send('Password incorrect')
         }
 }
 

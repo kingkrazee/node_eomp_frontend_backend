@@ -14,12 +14,12 @@ const insertUser = async(req,res)=>{
         if(err) throw err
         console.log(hashedP);
         await insertUserDb(firstName,lastName,userAge,gender,userRole,emailAdd,hashedP,userProfile)
-        res.send('User was inserted successfully')
+        res.status(200).send('User was inserted successfully')
     })
 }
 const deleteUser = async(req,res)=>{
     await deleteUserDb(req.params.id)
-    res.send('User has been deleted')
+    res.status(200).send('User has been deleted')
 }
 const updateUser = async(req,res)=>{
     let {firstName,lastName,userAge,gender,userRole,emailAdd,userPass,userProfile} = req.body
@@ -34,9 +34,9 @@ const updateUser = async(req,res)=>{
     userProfile ? userProfile: {userProfile} = user
 
     await updateUserDb(firstName,lastName,userAge,gender,userRole,emailAdd,userPass,userProfile, +req.params.id)
-    res.send('User Updated user successfully')
+    res.status(200).send('User Updated user successfully')
 }
 const loginUser = async(req,res)=>{
-    res.send({message:"You have logged in successfully"})
+    res.status(200).send({message:"You have logged in successfully"})
 }
 export {getUsers, getUser,insertUser, deleteUser, updateUser, loginUser}
