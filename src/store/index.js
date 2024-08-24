@@ -84,7 +84,7 @@ export default createStore({
     },
     async register(context, payload) {
       try {
-        const { msg, err, token } = await (await axios.post(`${apiURL}user/register`, payload)).data
+        const { msg, err, token } = await (await axios.post(`${apiURL}users/register`, payload)).data
         if (token) {
           context.dispatch('fetchUsers')
           toast.success(`${msg}`, {
