@@ -3,9 +3,41 @@
         <div class="row">
             <h2 class="display-2">Products</h2>
         </div>
-        {{}}
-        <div class="row gap-2 justify-content-center my-2" v-if="products">
-            <Card v-for="product in products" v-bind:key="product.prodID">
+
+        <!-- Search and Filter -->
+        <div class="row mb-4">
+            <div class="col-md-6 mb-2 mb-md-0">
+                <input
+                    v-model="searchQuery"
+                    type="text"
+                    class="form-control"
+                    placeholder="Search products"
+                />
+            </div>
+            <div class="col-md-6">
+                <select v-model="selectedCategory" class="form-select">
+                    <option value="">All Categories</option>
+                    <option v-for="category in categories" :key="category" :value="category">
+                        {{ category }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Sort Options -->
+        <div class="row mb-4">
+            <div class="col">
+                <select v-model="sortOption" class="form-select">
+                    <option value="default">Sort by</option>
+                    <option value="name">Name</option>
+                    <option value="amount">Price</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Products Display -->
+        <div class="row gap-2 justify-content-center my-2" v-if="filteredAndSortedProducts.length">
+            <Card v-for="product in filteredAndSortedProducts" :key="product.prodID">
                 <template #cardHeader>
                     <img :src="product.prodUrl" loading="lazy" class="img-fluid" style="height: 200px;" :alt="product.prodName">
                 </template>
@@ -29,34 +61,63 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import Spinner from '@/components/Spinner.vue'
 import Card from '@/components/Card.vue'
+
 const store = useStore()
 const products = computed(() => store.state.products)
+const searchQuery = ref('')
+const selectedCategory = ref('')
+const sortOption = ref('default')
+const categories = ref([])
+
+// Fetch products and categories
 onMounted(() => {
-    store.dispatch('fetchProducts')
+    store.dispatch('fetchProducts').then(() => {
+        const uniqueCategories = new Set(products.value.map(p => p.category))
+        categories.value = Array.from(uniqueCategories)
+    })
 })
+
+// Filtered and sorted products
+const filteredAndSortedProducts = computed(() => {
+    let filteredProducts = products.value
+
+    // Apply search filter
+    if (searchQuery.value) {
+        filteredProducts = filteredProducts.filter(product =>
+            product.prodName.toLowerCase().includes(searchQuery.value.toLowerCase())
+        )
+    }
+
+    // Category filter
+    if (selectedCategory.value) {
+        filteredProducts = filteredProducts.filter(product =>
+            product.category === selectedCategory.value
+        )
+    }
+
+    // Sorting
+    if (sortOption.value === 'name') {
+        filteredProducts = filteredProducts.sort((a, b) => a.prodName.localeCompare(b.prodName))
+    } else if (sortOption.value === 'amount') {
+        filteredProducts = filteredProducts.sort((a, b) => a.amount - b.amount)
+    }
+
+    return filteredProducts
+})
+
 function addToCart(product) {
     store.dispatch('addToCart', product)
 }
-
-
 </script>
 
 <style scoped>
-/* .container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
+/* Existing styles */
 
 #product {
-    background-color: linear-gradient(to bottom left, #280677,#271341, #000000);
+    background: linear-gradient(to bottom left, #280677, #271341, #000000);
 }
 
 .display-2 {
@@ -81,7 +142,7 @@ function addToCart(product) {
 .btn {
     margin: 10px;
 }
-.mg-fluid{
+.mg-fluid {
     z-index: -6;
 }
 </style>

@@ -47,9 +47,9 @@ export default createStore({
     // ==== User ========
     async fetchUsers(context) {
       try {
-        const { results, msg } = await (await axios.get(`${apiURL}user`)).data
-        if (results) {
-          context.commit('setUsers', results)
+        const { data } = await axios.get(`${apiURL}users`)
+        if (data) {
+          context.commit('setUsers', data)
         } else {
           toast.error(`${msg}`, {
             autoClose: 2000,
@@ -65,7 +65,8 @@ export default createStore({
     },
     async fetchUser(context, id) {
       try {
-        const { result, msg } = await (await axios.get(`${apiURL}user/${id}`)).data
+        console.log(id)
+        const result = await ( await axios.get(`${apiURL}users/${id}`)).data
         if (result) {
           context.commit('setUser', result)
         } else {
@@ -107,7 +108,7 @@ export default createStore({
 
     async updateUser(context, payload) {
       try {
-        const { msg, err } = await (await axios.patch(`${apiURL}user/${payload.userID}`, payload)).data
+        const { msg, err } = await (await axios.patch(`${apiURL}users/${payload.userID}`, payload)).data
         if (msg) {
           context.dispatch('fetchUsers')
         } else {
@@ -126,7 +127,7 @@ export default createStore({
 
     async deleteUser(context, id) {
       try {
-        const { msg, err } = await (await axios.delete(`${apiURL}user/${id}`)).data
+        const { msg, err } = await (await axios.delete(`${apiURL}users/${id}`)).data
         if (msg) {
           context.dispatch('fetchUsers')
         } else {
@@ -146,7 +147,7 @@ export default createStore({
     // ===== LOGIN =======
     async login(context, payload) {
       try {
-        const { msg, result, token } = await (await axios.post(`${apiURL}user/login`, payload)).data
+        const { msg, result, token } = await (await axios.post(`${apiURL}users/login`, payload)).data
         if (result) {
           toast.success(`${msg}:sunglasses:`, {
             autoClose: 2000,
@@ -214,7 +215,6 @@ export default createStore({
       }
     },
     async fetchProduct(context, id) {
-      console.log(id);
       
       try {
         console.log(id)
