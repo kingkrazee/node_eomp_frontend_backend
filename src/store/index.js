@@ -84,7 +84,7 @@ export default createStore({
     },
     async register(context, payload) {
       try {
-        const { msg, err, token } = await (await axios.post(`${apiURL}users/register`, payload)).data
+        const { msg, err, token } = await (await axios.post(`${apiURL}users/`, payload)).data
         if (token) {
           context.dispatch('fetchUsers')
           toast.success(`${msg}`, {
@@ -236,7 +236,7 @@ export default createStore({
     },
     async addAProduct(context, payload) {
       try {
-        const { msg } = await (await axios.post(`${apiURL}product/add`, payload)).data
+        const { msg } = await (await axios.post(`${apiURL}products/`, payload)).data
         if (msg) {
           context.dispatch('fetchProducts')
           toast.success(`${msg}`, {

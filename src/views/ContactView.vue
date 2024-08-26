@@ -79,11 +79,6 @@
 
 <script>
 export default {
-  // data(){
-  //   return {
-  //     gifyUrl: "https://nasheetajacobs1999.github.io/Node.js-Images/images/contact_gif.gif"
-  //   }
-  // }
 };
 </script>
 

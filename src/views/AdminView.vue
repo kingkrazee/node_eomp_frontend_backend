@@ -4,8 +4,9 @@
             <!-- Products Section -->
             <h2>Products</h2>
             <button class="add" type="button" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                <i class="fa-solid fa-square-plus"></i>
+                <i class="bi bi-plus-square"></i>
             </button>
+            
             <table class="table">
                 <thead>
                     <tr id="prod-row">
@@ -19,6 +20,7 @@
                     </tr>
                 </thead>
                 <tbody v-if="products">
+                    
                     <tr v-for="product in products" :key="product.prodID" id="prod-row">
                         <td><img :src="product.prodUrl" alt="product-img" id="tab-img"></td>
                         <td>{{ product.prodID }}</td>
@@ -100,7 +102,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="addProduct">Save changes</button>
+                        <button type="button" class="btn btn-primary" @click="addProduct()">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -233,7 +235,7 @@ export default {
                 prodBio: this.newProduct.prodBio,
                 prodDes: this.newProduct.prodDes
             };
-            this.$store.dispatch('addProduct', data);
+            this.$store.dispatch('addAProduct', data);
         },
         editProduct() {
             this.$store.dispatch('updateProduct', this.productPayload);
@@ -262,7 +264,7 @@ export default {
                 userPass: this.newUser.userPass,
                 userRole: this.newUser.userRole
             };
-            this.$store.dispatch('addUser', data);
+            this.$store.dispatch('register', data);
         },
         editUser() {
             this.$store.dispatch('updateUser', this.userPayload);
